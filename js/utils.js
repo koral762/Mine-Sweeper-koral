@@ -103,11 +103,13 @@ function showNeighbors(cellI, cellJ, mat) {
             var value = mat[i][j].minesAroundCount;
             var elCell = document.querySelector(`[data-i="${location.i}"][data-j="${location.j}"]`);
             value = (value === 0) ? '' : value;
-            if(!elCell.classList.contains('marked')){
+
+            if (!elCell.classList.contains('marked')) {
 
                 elCell.classList.add('marked');
                 ++gGame.shownCount;
-            };
+            } 
+            
             elCell.innerText = value;
             gBord[i][j].isShown = true;
 

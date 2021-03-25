@@ -26,6 +26,7 @@ var gGameOn = '';
 
 
 function init() {
+    gTime = 0;
     gGame.shownCount = 0;
     gClickCou = 0;
     gLifeCou = 0;
@@ -36,11 +37,13 @@ function init() {
     var elCell = document.querySelector('.buttonTime span');
     elCell.innerText = 0;
     setLife();
-
 }
 
 function startGame(elLevel) {
-    // console.log(elLevel);
+
+    var elSmiley = document.querySelector('.buttonSc span');
+    elSmiley.innerText = '🙂';
+
     switch (elLevel.innerText) {
 
         case 'Beginner':
@@ -70,6 +73,8 @@ function startGame(elLevel) {
 
 function cellClicked(elCell, cellI, cellJ) {
     gClickCou += 1;
+
+    ++gGame.markedCount;
 
     gCellI = +elCell.getAttribute('data-i');
     gCellJ = +elCell.getAttribute('data-j');
@@ -107,13 +112,11 @@ function cellClicked(elCell, cellI, cellJ) {
             if (gLifeCou === 3) { gameOver(); };
         }
         var elBombs = document.querySelector('.bombs span');
-        elBombs.innerText = gLevel.MINES-1;
+        elBombs.innerText = gLevel.MINES - 1;
 
     }
     gBord[gCellI][gCellJ].isShown = true;
 
-
-    console.log(gGame);
     if (gGame.shownCount === (gLevel.SIZE ** 2) - gLevel.MINES) {
         win();
     }
@@ -140,10 +143,16 @@ function win() {
     var elSmiley = document.querySelector('.buttonSc span');
     elSmiley.innerText = '😃';
     alert('wwwiiinnnn');
+}
+
+function hints(key) {
+    
+    key.innerText = '🔮';
 
 }
 
 function cellMarked(elCell) {
+    
 
     var iCell = elCell.getAttribute('data-i')
     var jCell = elCell.getAttribute('data-j')
@@ -207,6 +216,13 @@ function setNumbersInBoard() {
 }
 
 function setLife() {
+
+
+    for (var i = 3; i < 6; i++) {
+
+        var elHint = document.getElementById(`${i + 1}`)
+        elHint.innerHTML = '🔑';
+    }
 
     for (var i = 0; i < gLevel.MINES; i++) {
         if (i === 3) return;

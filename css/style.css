@@ -55,6 +55,13 @@ h{
 
 .lives{
     margin-top:10px;
+    font-size:xx-large;
+    
+}
+
+.hints{
+    
+    font-size:x-large;
 
 }
 
@@ -78,18 +85,3 @@ h{
 }
 
 
-.modal {
-    background-color: rgb(131, 247, 170);
-    position: absolute;
-    display:black;
-    width: 300px;
-    height: 200px;
-    margin: 50px;
-
-}
-
-.modal button {
-    float:right;
-
-
-}
